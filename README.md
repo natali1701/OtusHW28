@@ -32,55 +32,35 @@ Last login: Sun Apr 28 21:21:28 2019 from 10.0.2.2
 
 [vagrant@primary ~]$ **sudo -iu postgres psql -c "select application_name, state, sync_priority, sync_state from pg_stat_replication;"**
 
- application_name |   state   | sync_priority | sync_state 
-
-------------------+-----------+---------------+------------
-
- standby          | streaming |             1 | sync
+| application_name |   state   | sync_priority | sync_state |
+| ---------------- | --------- | ------------- | ---------- |
+| standby          | streaming |             1 | sync       |
 
 (1 row)
 
 [vagrant@primary ~]$ **sudo -iu postgres psql -x -c "select * from pg_stat_replication;"**
 
--[ RECORD 1 ]----+------------------------------
-
-pid              | 13128
-
-usesysid         | 16384
-
-usename          | replication
-
-application_name | standby
-
-client_addr      | 192.168.50.101
-
-client_hostname  | standby.otus.test
-
-client_port      | 40650
-
-backend_start    | 2019-04-28 18:20:44.556379+00
-
-backend_xmin     | 
-
-state            | streaming
-
-sent_lsn         | 0/5000140
-
-write_lsn        | 0/5000140
-
-flush_lsn        | 0/5000140
-
-replay_lsn       | 0/5000140
-
-write_lag        | 
-
-flush_lag        | 
-
-replay_lag       | 
-
-sync_priority    | 1
-
-sync_state       | sync
+| [ RECORD 1 ]    | +                             |
+| --------------- | ----------------------------  |
+|pid              | 13128                         |
+|usesysid         | 16384                         |
+|usename          | replication                   |
+|application_name | standby                       |
+|client_addr      | 192.168.50.101                |
+|client_hostname  | standby.otus.test             |
+|client_port      | 40650                         |
+|backend_start    | 2019-04-28 18:20:44.556379+00 |
+|backend_xmin     |                               |
+|state            | streaming                     |
+|sent_lsn         | 0/5000140                     |
+|write_lsn        | 0/5000140                     |
+|flush_lsn        | 0/5000140                     |
+|replay_lsn       | 0/5000140                     |
+|write_lag        |                               |
+|flush_lag        |                               | 
+|replay_lag       |                               |
+|sync_priority    | 1                             |
+|sync_state       | sync                          |
 
 
 **Создадим test database:**
@@ -135,15 +115,11 @@ You are now connected to database "test" as user "postgres".
 
 test=# select * from fruits;
 
- id | name  
-
-----+-------
-
-  1 | apple
-
-  2 | melon
-
-  3 | lemon
+| id | name  |
+| -- | ----- |
+| 1  | apple |
+| 2  | melon |
+| 3  | lemon |
 
 (3 rows)
 
